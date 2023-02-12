@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{%block content%}
+<h1>Reading List</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Author</th>
+            <th>Rating</th>
+            <th>Status</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in media%}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.get_type_display }}</td>
+            <td>{% for author in item.authors.all %}
+                    {{author.name}}
+                {%endfor%}</td>
+            <td>{{ item.score }}</td>
+            <td>
+                {{item.get_status_display}}
+            </td>
+            <td>{{ item.notes }}</td>
+        </tr>
+        
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}
