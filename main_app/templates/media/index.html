@@ -15,19 +15,21 @@
     </thead>
     <tbody>
         {% for item in media%}
-        <tr>
-            <td>{{ item.name }}</td>
-            <td>{{ item.get_type_display }}</td>
-            <td>{% for author in item.authors.all %}
-                    {{author.name}}
-                {%endfor%}</td>
-            <td>{{ item.score }}</td>
-            <td>
-                {{item.get_status_display}}
-            </td>
-            <td>{{ item.notes }}</td>
-        </tr>
         
+            <tr>
+                <td><a href="{%url 'detail' item.id %}">{{ item.name }}</a></td>
+                <td>{{ item.get_type_display }}</td>
+                <td>{% for author in item.authors.all %}
+                        {{author.name}}{% if not forloop.last %}, {% endif %}
+                    {%endfor%}</td>
+                <td>{{ item.score }}</td>
+                <td>
+                    {{item.get_status_display}}
+                </td>
+                <td>{{ item.notes }}</td>
+            </tr>
+        
+        </tbody>
         {% endfor %}
     </tbody>
 </table>

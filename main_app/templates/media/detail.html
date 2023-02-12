@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{%block content%}
+
+<h1><span style="color:green">{{media.get_type_display}}:</span> {{media.name}} <span style="color:grey">({{ media.get_status_display }})</span></h1>
+<h4>Author: 
+    {% for author in media.authors.all %}
+        {{author.name}}{% if not forloop.last %}, {% endif %}
+    {%endfor%}
+</h4>
+<h4>Rating: 
+    {{media.score}}
+</h4>
+<h4>Notes:</h4>
+<p>{{media.notes}}</p>
+
+{% endblock %}
